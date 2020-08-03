@@ -7,5 +7,9 @@ const ctrl = require('../controllers');
 //GET all users
 router.get('/all', ctrl.users.showAllUsers);
 
+//GET user by ID
+router.get('/:id', ctrl.users.show);
+
+
 
 module.exports = router;

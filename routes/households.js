@@ -8,6 +8,7 @@ const ctrl = require('../controllers');
 //FIXME development only
 router.get('/all', ctrl.households.showAll);
 
-
+//GET find by id
+router.get('/:id', ctrl.households.show);
 
 module.exports = router;

@@ -13,4 +13,7 @@ router.get('/:id', ctrl.users.show);
 //PUT update user
 router.put('/:id', ctrl.users.update);
 
+//DELETE all users
+router.delete('/yeet', ctrl.users.yeet);
+
 module.exports = router;

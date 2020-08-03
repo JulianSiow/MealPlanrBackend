@@ -52,8 +52,20 @@ const update = (req, res) => {
     });
 };
 
+//DELETE all users
+const yeet = (req, res) => {
+    db.User.deleteMany({}, (err, deletedUsers) => {
+        if (err) return console.log(err);
+        res.json({
+            status: 200,
+            message: 'YEET'
+        });
+    });
+};
+
 module.exports = {
     showAllUsers,
     show,
-    update
+    update,
+    yeet
 };

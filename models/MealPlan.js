@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema  = mongoose.Schema;
 
-const PlanSchema = mongoose.Schema({
+const MealPlanSchema = mongoose.Schema({
     date: {
         type: Date,
         required: true
@@ -21,6 +21,6 @@ const PlanSchema = mongoose.Schema({
     }
 });
 
-const Plan = mongoose.model('Plan', PlanSchema);
+const MealPlan = mongoose.model('MealPlan', MealPlanSchema);
 
-module.exports = Plan;
+module.exports = MealPlan;

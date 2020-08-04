@@ -11,7 +11,7 @@ const HouseholdSchema = mongoose.Schema({
         ref: 'User'
     }],
     recipes: [String]
-})
+});
 
 const Household = mongoose.model('Household', HouseholdSchema);
 

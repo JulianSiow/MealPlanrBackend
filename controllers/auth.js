@@ -3,9 +3,15 @@ const db = require('../models');
 
 //POST Register
 const register = (req, res) => {
+    if (req.session.currentUser) {
+        return res.status(400).json({
+            ststus: 400,
+            message: 'Please log out and try again'
+        });
+    };
     if (!req.body.name || !req.body.email || !req.body.password){
         return res.status(400).json({ status: 400, message: 'Please enter your name, email and password' });
-    }
+    };
     db.User.findOne({ email: req.body.email }, (err, foundUser) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong, please try again'});
 

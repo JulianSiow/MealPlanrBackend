@@ -54,6 +54,10 @@ const update = (req, res) => {
 
 //DELETE all users
 const yeet = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
+        res.sendStatus(200);
+    });
     db.User.deleteMany({}, (err, deletedUsers) => {
         if (err) return console.log(err);
         res.json({

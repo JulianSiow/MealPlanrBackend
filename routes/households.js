@@ -11,4 +11,7 @@ router.get('/all', ctrl.households.showAll);
 //GET find by id
 router.get('/:id', ctrl.households.show);
 
+//POST new household
+router.post('/new', ctrl.households.newHousehold);
+
 module.exports = router;

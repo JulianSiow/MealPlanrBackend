@@ -1,6 +1,7 @@
 const db = require('../models');
 
 //GET all users
+//REVIEW maybe only available to logged in users?
 const showAllUsers = (req, res) => {
     db.User.find({})
     .exec((err, allUsers) => {

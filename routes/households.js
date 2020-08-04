@@ -14,4 +14,11 @@ router.get('/:id', ctrl.households.show);
 //POST new household
 router.post('/new', ctrl.households.newHousehold);
 
+//PUT add members
+router.put('/:id', ctrl.households.newMember);
+
+//DELETE all households
+//FIXME dev only
+router.delete('/yeet', ctrl.households.yeet);
+
 module.exports = router;

@@ -49,7 +49,6 @@ const newHousehold = (req, res) => {
                 status: 500,
                 message: 'Could not add new household to user'
             });
-            updatedUser.households.push(createdHousehold._id);
             User.save;
         });
         res.json({
@@ -71,7 +70,6 @@ const newMember = (req, res) => {
             status: 500,
             message: 'Could not add member to household'
         });
-        updatedHousehold.members.push(userId);
         Household.save;
     });
     db.User.findByIdAndUpdate(userId, {$push: {households: householdId}}, (err, updatedUser) => {
@@ -79,7 +77,6 @@ const newMember = (req, res) => {
             status: 500,
             message: 'Could not add household to user'
         });
-        updatedUser.households.push(householdId);
         User.save;
     });
     res.json({
@@ -99,7 +96,6 @@ const newPlan = (req, res) => {
             status: 500,
             message: 'Could not add meal plan'
         });
-        updatedHousehold.mealPlans.push(req.body);
         Household.save;
     });
     res.json({

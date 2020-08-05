@@ -49,7 +49,6 @@ const newHousehold = (req, res) => {
                 status: 500,
                 message: 'Could not add new household to user'
             });
-            User.save;
         });
         res.json({
             status: 201,
@@ -70,20 +69,20 @@ const newMember = (req, res) => {
             status: 500,
             message: 'Could not add member to household'
         });
-        Household.save;
     });
     db.User.findByIdAndUpdate(userId, {$push: {households: householdId}}, (err, updatedUser) => {
         if (err || !updatedUser) return res.status(500).json({
             status: 500,
             message: 'Could not add household to user'
         });
-        User.save;
     });
     res.json({
         status: 200,
         message: 'User and household linked'
     });
 };
+
+//FIXME should check if user logged in belongs to household!!!
 
 const newPlan = (req, res) => {
     if (!req.session.currentUser) return res.status(401).json({
@@ -96,11 +95,28 @@ const newPlan = (req, res) => {
             status: 500,
             message: 'Could not add meal plan'
         });
-        Household.save;
     });
     res.json({
         status: 200,
         message: req.body
+    });
+};
+
+const deletePlan = (req, res) => {
+    if (!req.session.currentUser) return res.status(401).json({
+        status: 401,
+        message: 'Please log in and try again'
+    });
+
+    db.Household.findByIdAndUpdate(req.params.householdId, {$pull: {mealPlans: {_id: req.params.planId}}}, (err, householdToUpdate) => {
+        if (err || !householdToUpdate) return res.status(500).json({
+            status: 500,
+            message: 'Could not delete meal plan'
+        });
+        res.status(200).json({
+            status: 200,
+            message: 'Meal plan deleted'
+        });
     });
 };
 
@@ -109,7 +125,7 @@ const yeet = (req, res) => {
         if (err) return console.log(err);
         res.json({
             status: 200,
-            massage: 'YEET'
+            message: 'YEET'
         });
     });
 };
@@ -120,5 +136,6 @@ module.exports = {
     newHousehold,
     newMember,
     newPlan,
+    deletePlan,
     yeet
 }

@@ -20,6 +20,9 @@ router.put('/:id/new-member', ctrl.households.newMember);
 //PUT add meal plan
 router.put('/:id/new-meal-plan', ctrl.households.newPlan);
 
+//PUT delete meal plan
+router.put('/:householdId/delete-meal-plan/:planId', ctrl.households.deletePlan);
+
 //DELETE all households
 //FIXME dev only
 router.delete('/yeet', ctrl.households.yeet);

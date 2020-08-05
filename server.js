@@ -44,5 +44,6 @@ app.get('/', (req, res) => {
 app.use('/api/v1/auth', routes.auth);
 app.use('/api/v1/users', routes.users);
 app.use('/api/v1/households', routes.households);
+app.use('/api/v1/mealPlans', routes.mealPlans);
 
 app.listen(PORT, () => console.log(`Server connected at http://localhost:${PORT}`));

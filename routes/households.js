@@ -15,7 +15,10 @@ router.get('/:id', ctrl.households.show);
 router.post('/new', ctrl.households.newHousehold);
 
 //PUT add members
-router.put('/:id', ctrl.households.newMember);
+router.put('/:id/new-member', ctrl.households.newMember);
+
+//PUT add meal plan
+router.put('/:id/new-meal-plan', ctrl.households.newPlan);
 
 //DELETE all households
 //FIXME dev only

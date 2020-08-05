@@ -86,7 +86,27 @@ const newMember = (req, res) => {
         status: 200,
         message: 'User and household linked'
     });
-}
+};
+
+const newPlan = (req, res) => {
+    if (!req.session.currentUser) return res.status(401).json({
+        status: 401,
+        message: 'Please log in and try again'
+    });
+
+    db.Household.findByIdAndUpdate(req.params.id, {$push: {mealPlans: req.body}}, (err, updatedHousehold) => {
+        if (err || !updatedHousehold) return res.status(500).json({
+            status: 500,
+            message: 'Could not add meal plan'
+        });
+        updatedHousehold.mealPlans.push(req.body);
+        Household.save;
+    });
+    res.json({
+        status: 200,
+        message: req.body
+    });
+};
 
 const yeet = (req, res) => {
     db.Household.deleteMany({}, (err, deletedHouseholds) => {
@@ -103,5 +123,6 @@ module.exports = {
     show,
     newHousehold,
     newMember,
+    newPlan,
     yeet
 }

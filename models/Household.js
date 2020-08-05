@@ -14,6 +14,7 @@ const HouseholdSchema = mongoose.Schema({
     mealPlans: [{
         date: {
             type: Date,
+            default: Date.now(),
             required: true
         },
         breakfast: {

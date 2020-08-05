@@ -10,7 +10,25 @@ const HouseholdSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    recipes: [String]
+    recipes: [String],
+    mealPlans: [{
+        date: {
+            type: Date,
+            required: true
+        },
+        breakfast: {
+            name: String,
+            recipeId: String
+        },
+        lunch: {
+            name: String,
+            recipeId: String
+        },
+        dinner: {
+            name: String,
+            recipeId: String
+        }
+    }]
 });
 
 const Household = mongoose.model('Household', HouseholdSchema);

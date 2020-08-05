@@ -13,6 +13,5 @@ mongoose.connect(dbUrl, {
 
 module.exports = {
     User: require('./User'),
-    Household: require('./Household'),
-    MealPlan: require('./MealPlan')
+    Household: require('./Household')
 };

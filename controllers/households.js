@@ -120,6 +120,33 @@ const deletePlan = (req, res) => {
     });
 };
 
+const editPlan = (req, res) => {
+    if (!req.session.currentUser) return res.status(401).json({
+        status: 401,
+        message: 'Please log in and try again'
+    });
+
+    db.Household.findById(req.params.householdId).then(householdToUpdate => {
+        let planToUpdate;
+        householdToUpdate.mealPlans.forEach(plan => {
+            if (plan._id == req.params.planId) {
+                planToUpdate = plan;
+            };
+        });
+        planToUpdate['breakfast'] = req.body.breakfast || planToUpdate['breakfast'];
+        planToUpdate['lunch'] = req.body.lunch || planToUpdate['lunch'];
+        planToUpdate['dinner'] = req.body.dinner || planToUpdate['dinner'];
+        householdToUpdate.save();
+
+        res.status(200).json({
+            status: 200,
+            message: 'Plan updated'
+        });
+    }).catch(err => {
+        console.log(err)
+    });
+};
+
 const yeet = (req, res) => {
     db.Household.deleteMany({}, (err, deletedHouseholds) => {
         if (err) return console.log(err);
@@ -137,5 +164,6 @@ module.exports = {
     newMember,
     newPlan,
     deletePlan,
+    editPlan,
     yeet
 }

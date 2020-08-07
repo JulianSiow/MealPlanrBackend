@@ -23,6 +23,9 @@ router.put('/:id/new-meal-plan', ctrl.households.newPlan);
 //PUT delete meal plan
 router.put('/:householdId/delete-meal-plan/:planId', ctrl.households.deletePlan);
 
+//PUT change meal plan
+router.put('/:householdId/edit-meal-plan/:planId', ctrl.households.editPlan);
+
 //DELETE all households
 //FIXME dev only
 router.delete('/yeet', ctrl.households.yeet);

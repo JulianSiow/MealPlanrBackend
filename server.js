@@ -7,6 +7,7 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 
+const routes = require('./routes');
 
 //=========================== MIDDLEWARE ====================
 
@@ -39,5 +40,9 @@ app.use(session({
 app.get('/', (req, res) => {
     res.send('<h1>MEAL PLANR</h1>');
 });
+
+app.use('/api/v1/auth', routes.auth);
+app.use('/api/v1/users', routes.users);
+app.use('/api/v1/households', routes.households);
 
 app.listen(PORT, () => console.log(`Server connected at http://localhost:${PORT}`));
